@@ -1,0 +1,26 @@
+.el-footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.el-footer, .el-header, .el-container, .el-main{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+
+.el-main {
+    margin:0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+}
