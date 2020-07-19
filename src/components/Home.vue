@@ -2,23 +2,45 @@
 <el-container>
     <el-header><Header></Header></el-header>
     <el-main>
-        <RoomOutline name="房间1" id="1"></RoomOutline>
-        <RoomOutline name="豪华大套间" id="2"></RoomOutline>
+        <RoomOutline v-for="room in rooms" 
+        :key="room.Name" 
+        :name="room.Name" 
+        :createdBy="room.CreatedBy"
+        :createdAt="room.CreatedAt">
+        </RoomOutline>
+        
     </el-main>
     <el-footer><Footer></Footer></el-footer>
 </el-container>
 </template>
 
 <script>
+import axios from "axios"
 import Header from "./Header.vue"
 import RoomOutline from "./RoomOutline.vue"
 import Footer from "./Footer.vue"
 export default {
     name: "Home",
+    data() {
+        return {
+            rooms: [
+            ],
+        } 
+    },
     components: {
         Header,
         RoomOutline,
         Footer,
+    },
+    beforeCreate() {
+        axios.get("http://127.0.0.1:8000/api/v1/home")
+            .then(
+                res => {
+                    this.rooms = res.data.rooms;
+                
+                }
+            ).catch( err => console.log(err));
+        
     }
 }
 </script>

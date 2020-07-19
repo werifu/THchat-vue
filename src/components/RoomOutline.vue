@@ -1,7 +1,8 @@
 <template>
     <div class="room-outline">
         <h2>房间名字：{{ name }}</h2>
-        <h3>房间id： {{ id }}</h3>
+        <h3>创建者： {{ createdBy }}</h3>
+        <h3>创建时间： {{ createdAt }}</h3>
         <router-link :to="'/room/'+name"> {{ name }}</router-link>
     </div>
 </template>
@@ -9,7 +10,7 @@
 <script>
 export default {
     name: "RoomOutline",
-    props: ["name", "id"],
+    props: ["name", "createdBy", "createdAt"],
 }
 </script>
 <style scoped>

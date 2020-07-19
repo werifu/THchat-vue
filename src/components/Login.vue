@@ -54,10 +54,9 @@ export default {
                     console.log(res.data);
                     // console.log(this.$cookies.isKey("mysession"));
                     // console.log(document.cookies);
-                    
+                    this.$store.commit('login', res.data.username);
                     })
                 .catch(err => (console.log(err)));
-            this.$message(formData.username);
             this.$message('username:'+ formData.username);
         }
     }
