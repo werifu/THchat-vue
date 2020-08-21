@@ -35,8 +35,8 @@
         this.websock.onclose = this.ws_close;
       },
       ws_onopen(){ //连接建立之后执行send方法发送数据
-        let actions = {"test":"12345"};
-        this.websocketsend(JSON.stringify(actions));
+        // let actions = {"test":"12345"};
+        // this.ws_send(JSON.stringify(actions));
       },
       ws_onerror(){//连接建立失败重连
         this.initWebSocket();

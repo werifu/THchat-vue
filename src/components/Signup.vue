@@ -24,6 +24,9 @@
 <script>
 import Header from "./Header.vue"
 import Footer from "./Footer.vue"
+import axios from "axios"
+import qs from "qs"
+
 export default {
     name: "Signup",
     components: {
@@ -43,6 +46,15 @@ export default {
             
             let formData = this.form;
             this.$message(formData.username);
+            axios.post("http://127.0.0.1:8000/api/v1/signup", qs.stringify({username: formData.username, password: formData.password}))
+                .then(res => {
+                    console.log(res.data);
+                    // console.log(this.$cookies.isKey("mysession"));
+                    // console.log(document.cookies);
+                    this.$store.commit('signup', res.data.username);
+                    })
+                .catch(err => (console.log(err)));
+            this.$message('username:'+ formData.username);
             
         }
     }
