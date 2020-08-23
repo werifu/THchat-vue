@@ -49,7 +49,7 @@ export default {
     methods: {
         onSubmit() {
             let formData = this.form;
-            axios.post("http://127.0.0.1:8000/api/v1/login", qs.stringify({username: formData.username, password: formData.password}))
+            axios.post("http://106.52.242.104/api/v1/login", qs.stringify({username: formData.username, password: formData.password}))
                 .then(res => {
                     console.log(res.data);
                     // console.log(this.$cookies.isKey("mysession"));

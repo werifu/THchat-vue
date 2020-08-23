@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         getRoom(psw) {
-            axios.get('http://127.0.0.1:8000/api/v1/room/'+this.roomName, {
+            axios.get('http://106.52.242.104/api/v1/room/'+this.roomName, {
                 params: {
                     password: psw
                 }

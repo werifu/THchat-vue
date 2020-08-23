@@ -26,7 +26,7 @@
     },
     methods: {
       initWebSocket(roomName){ //初始化weosocket
-        const wsuri = "ws://127.0.0.1:8000/api/v1/room/"+ roomName + "/ws";
+        const wsuri = "ws://106.52.242.104/api/v1/room/"+ roomName + "/ws";
         console.log(wsuri);
         this.websock = new WebSocket(wsuri);
         this.websock.onmessage = this.ws_onmessage;

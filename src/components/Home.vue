@@ -33,7 +33,7 @@ export default {
         Footer,
     },
     beforeCreate() {
-        axios.get("http://127.0.0.1:8000/api/v1/home")
+        axios.get("http://106.52.242.104/api/v1/home")
             .then(
                 res => {
                     this.rooms = res.data.rooms;
