@@ -12,6 +12,7 @@ Vue.use(VueRouter);
 export default new VueRouter({
     name: 'Router',
     routes: [
+        { path: '/', redirect: '/home'},
         { path: '/home', component: Home},
         { path: '/room/:name', component: Room},
         { path: '*', component: Error},
