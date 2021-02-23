@@ -27,7 +27,6 @@ import Header from "./Header.vue"
 import Footer from "./Footer.vue"
 import axios from "axios"
 import qs from "qs"
-
 export default {
     name: "Login",
     components: {
@@ -49,7 +48,7 @@ export default {
     methods: {
         onSubmit() {
             let formData = this.form;
-            axios.post("http://106.52.242.104/api/v1/login", qs.stringify({username: formData.username, password: formData.password}))
+            axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/login`, qs.stringify({username: formData.username, password: formData.password}))
                 .then(res => {
                     console.log(res.data);
                     // console.log(this.$cookies.isKey("mysession"));

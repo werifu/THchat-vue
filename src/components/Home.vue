@@ -33,7 +33,7 @@ export default {
         Footer,
     },
     beforeCreate() {
-        axios.get("http://secret-sealing.club/api/v1/home")
+        axios.get(`http://${process.env.VUE_APP_HOST}/api/v1/home`)
             .then(
                 res => {
                     this.rooms = res.data.rooms;

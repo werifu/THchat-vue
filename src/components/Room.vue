@@ -23,6 +23,7 @@ import Footer from "./Footer.vue"
 import Header from "./Header.vue"
 import ChatBox from "./ChatBox.vue"
 import axios from "axios"
+
 export default {
     name: "Room",
     components: {
@@ -52,7 +53,7 @@ export default {
     },
     methods: {
         getRoom(psw) {
-            axios.get('http://106.52.242.104/api/v1/room/'+this.roomName, {
+            axios.get(`http://${process.env.VUE_APP_HOST}/api/v1/room/`+this.roomName, {
                 params: {
                     password: psw
                 }
