@@ -6,7 +6,8 @@
         :key="room.Name" 
         :name="room.Name" 
         :createdBy="room.CreatedBy"
-        :createdAt="room.CreatedAt">
+        :createdAt="room.CreatedAt"
+        :isCreator="isCreator(room.CreatedBy)">
         </RoomOutline>
         
     </el-main>
@@ -37,10 +38,14 @@ export default {
             .then(
                 res => {
                     this.rooms = res.data.rooms;
-                
                 }
             ).catch( err => console.log(err));
         
+    },
+    methods: {
+        isCreator(roomCreator) {
+            return this.$store.state.username == roomCreator;
+        }
     }
 }
 </script>

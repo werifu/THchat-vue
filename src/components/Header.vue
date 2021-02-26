@@ -11,11 +11,20 @@
 <script>
 import TopNav from "./TopNav.vue"
 import TopInfo from "./TopInfo.vue"
+import axios from "axios"
 export default {
     name: "Header",
     components: {
         TopNav,
         TopInfo,
+    },
+    created() {
+        axios.get(`http://${process.env.VUE_APP_HOST}/api/v1/status`)
+        .then(res => {
+            if (res.data.islogin == 1) {
+                this.$store.commit("login", res.data.username);
+            }
+        }).catch(err => (console.log(err)));
     },
     computed: {
         isLogin() {

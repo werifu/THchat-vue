@@ -56,8 +56,6 @@ export default {
             axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/login`, qs.stringify({username: formData.username, password: pwdWithSalt}))
                 .then(res => {
                     console.log(res.data);
-                    // console.log(this.$cookies.isKey("mysession"));
-                    // console.log(document.cookies);
                     this.$store.commit('login', res.data.username);
                     })
                 .catch(err => (console.log(err)));

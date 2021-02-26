@@ -26,7 +26,7 @@ import Header from "./Header.vue"
 import Footer from "./Footer.vue"
 import axios from "axios"
 import qs from "qs"
-
+import cryptoJs from "crypto-js"
 export default {
     name: "NewRoom",
     components: {
@@ -48,7 +48,9 @@ export default {
     methods: {
         onSubmit() {
             let formData = this.form;
-            axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/newroom`, qs.stringify({room_name: formData.roomname, password: formData.password}))
+            let salt = process.env.VUE_APP_SALT;
+            let pwdWithSalt = cryptoJs.SHA1(formData.password+salt).toString(cryptoJs.enc.Base64);
+            axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/newroom`, qs.stringify({room_name: formData.roomname, password: pwdWithSalt}))
                 .then(res => {
                     console.log(res.data);
                     // this.$cookies.set("my_session", res.data, "12h");

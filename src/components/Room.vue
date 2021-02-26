@@ -23,7 +23,7 @@ import Footer from "./Footer.vue"
 import Header from "./Header.vue"
 import ChatBox from "./ChatBox.vue"
 import axios from "axios"
-
+import cryptoJs from "crypto-js"
 export default {
     name: "Room",
     components: {
@@ -53,9 +53,11 @@ export default {
     },
     methods: {
         getRoom(psw) {
+            let salt = process.env.VUE_APP_SALT;
+            let pwsWithSalt = cryptoJs.SHA1(psw+salt).toString(cryptoJs.enc.Base64);
             axios.get(`http://${process.env.VUE_APP_HOST}/api/v1/room/`+this.roomName, {
                 params: {
-                    password: psw
+                    password: pwsWithSalt
                 }
             }
             ).then( res => {
