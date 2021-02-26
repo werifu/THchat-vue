@@ -1,6 +1,6 @@
 <template>
     <div id="bottom">
-        <p>@2020 Werifu</p>
+        <p>@2020-2021 Werifu</p>
         <a href="http://beian.miit.gov.cn" style="text-dicoration: none;">粤ICP备2020077312号</a>
     </div>
 </template>

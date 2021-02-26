@@ -7,6 +7,7 @@ import Error from '../components/Error.vue';
 import Login from '../components/Login.vue';
 import Signup from '../components/Signup.vue';
 import NewRoom from '../components/NewRoom.vue';
+import OauthGithub from '../components/OauthGithub.vue';
 
 Vue.use(VueRouter);
 export default new VueRouter({
@@ -19,5 +20,6 @@ export default new VueRouter({
         { path: '/login', component: Login},
         { path: '/signup', component: Signup},
         { path: '/newroom', component: NewRoom},
+        { path: '/oauth/github', component: OauthGithub}
       ]
 })

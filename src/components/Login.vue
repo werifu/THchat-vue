@@ -14,6 +14,7 @@
         <el-form-item>
             <el-button type="submit" @click="onSubmit">登录</el-button>
         </el-form-item>
+            <a :href="github_oauth_url"><el-button style="float: right; padding: 3px 0" type="text">Github SSO</el-button></a>
             <router-link to="/signup"><el-button style="float: right; padding: 3px 0" type="text">注册点这里</el-button></router-link>
         </el-form>
         </div>
@@ -26,6 +27,7 @@
 import Header from "./Header.vue"
 import Footer from "./Footer.vue"
 import axios from "axios"
+import cryptoJs from "crypto-js"
 import qs from "qs"
 export default {
     name: "Login",
@@ -39,6 +41,7 @@ export default {
                 username: "",
                 password: "",
             },
+            github_oauth_url: "https://github.com/login/oauth/authorize?client_id=27d33904d0bff3420d9a",
         } 
     },
     created() {
@@ -48,7 +51,9 @@ export default {
     methods: {
         onSubmit() {
             let formData = this.form;
-            axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/login`, qs.stringify({username: formData.username, password: formData.password}))
+            let salt = process.env.VUE_APP_SALT;
+            let pwdWithSalt = cryptoJs.SHA1(formData.password+salt).toString(cryptoJs.enc.Base64);
+            axios.post(`http://${process.env.VUE_APP_HOST}/api/v1/login`, qs.stringify({username: formData.username, password: pwdWithSalt}))
                 .then(res => {
                     console.log(res.data);
                     // console.log(this.$cookies.isKey("mysession"));
